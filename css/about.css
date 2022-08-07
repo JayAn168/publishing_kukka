@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Noto+Sans+KR:wght@100;300;400;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+.ftM {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+}
+
+/* 가운데정렬 */
+.flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainImg {
+  padding-top: 120px;
+  width: 100%;
+  min-width: 900px;
+}
+
+
+/* content */
+
+.main_img {
+  margin-top: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main_img > img {
+  width: 300px;
+  height: 300px;
+  vertical-align: middle;
+}
+.main_word{
+  margin-top: 100px;
+}
+
+.main_word > h1 {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 50px;
+  text-align: center;
+  font-weight: 900;
+}
+.main_word > p {
+  text-align: center;
+  font-family: "Noto Sans KR", sans-serif;
+  padding-top: 20px;
+}
+.container1 {
+  width: 1500px;
+  margin: 0 auto;
+  margin-top: 200px;
+  margin-bottom: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container1 > .sub_box1 {
+  width: 50%;
+  height: 100%;
+}
+.container1 > .sub_box1 > img {
+  width: 100%;
+}
+.container1 > .sub_box2 {
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+}
+.container1 > .sub_box2 > .sub_box2_word {
+}
+.container1 > .sub_box2 > .sub_box2_word > h1 {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 40px;
+  text-align: left;
+  font-weight: 900;
+}
+.container1 > .sub_box2 > .sub_box2_word > p {
+  text-align: left;
+  font-family: "Noto Sans KR", sans-serif;
+  padding-top: 20px;
+}

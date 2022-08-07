@@ -1,0 +1,384 @@
+/* COMMON */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Bree Serif", serif;
+  font-family: "Noto Sans KR", sans-serif;
+  color: #333;
+}
+img {
+  display: block;
+}
+a {
+  text-decoration: none;
+}
+.inner {
+  width: 1500px;
+  margin: 0 auto;
+  position: relative;
+}
+/* 노말라이즈 */
+body,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+/* 노말라이즈 끝 */
+
+/* 배경이미지 작업 시작 */
+.page {
+  position: relative;
+  z-index: 0;
+}
+
+.page-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+/* 배경이미지 작업 끝 */
+
+/* HEADER */
+header {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.85);
+  position: relative;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0.5px 0.5px 10px rgb(161, 0, 53);
+}
+
+header > .inner {
+  height: 110px;
+}
+
+header .logo {
+  height: 75px;
+  position: absolute;
+  top: 0;
+  bottom: 0px;
+  left: -60px;
+  margin: auto;
+}
+
+header .sub-menu {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  display: flex;
+}
+
+header .sub-menu ul.menu {
+  display: flex;
+}
+
+header .sub-menu ul.menu li {
+  position: relative;
+}
+
+header .sub-menu ul.menu li::before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 16px;
+  background-color: rgb(161, 0, 53);
+  position: absolute;
+  top: 0;
+  bottom: -2px;
+  margin: auto 0;
+}
+
+header .sub-menu ul.menu li:first-child::before {
+  display: none;
+}
+
+header .sub-menu ul.menu li a {
+  font-size: 16px;
+  padding: 11px 16px;
+  display: block;
+  color: #656565;
+}
+
+header .sub-menu ul.menu li a:hover {
+  color: rgb(161, 0, 53);
+}
+
+header .sub-menu .search {
+  height: 34px;
+  position: relative;
+  cursor: pointer;
+}
+
+header .sub-menu .search input {
+  width: 34px;
+  height: 32px;
+  margin-top: 7px;
+  padding: 10px 10px;
+  border: 2px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  outline: none;
+  background-color: #fff;
+  color: #333;
+  font-size: 12px;
+  transition: width 0.4s;
+}
+
+header .sub-menu .search input:focus {
+  width: 190px;
+  border-color: rgb(161, 0, 53);
+}
+
+header .sub-menu .search .fa-magnifying-glass {
+  height: 24px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 5px;
+  margin: auto;
+  margin-top: 12px;
+  transition: 0.4s;
+  font-size: 22px;
+}
+
+header .sub-menu .search.focused .fa-magnifying-glass {
+  opacity: 0;
+}
+
+header .main-menu {
+  position: absolute;
+  display: flex;
+  bottom: 20px;
+  right: 0;
+  z-index: 1;
+}
+
+header .main-menu .item .item__name {
+  padding: 10px 20px 20px 20px;
+  font-size: 17px;
+  color: #333;
+  transition: all;
+}
+
+header .main-menu .item:hover .item__name {
+  color: rgb(161, 0, 53);
+  border-radius: 6px 6px 0px 0px;
+  cursor: pointer;
+}
+
+header .main-menu .item .item__contents {
+  width: 91px;
+  position: fixed;
+  display: none;
+  text-align: center;
+}
+header .main-menu .item:hover .item__contents {
+  display: block;
+}
+/* MAIN */
+.bg-center {
+  width: 1500px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 450px;
+}
+.bg-center > p {
+  font-size: 14px;
+  margin-bottom: 23px;
+}
+.bg-center span {
+  display: block;
+}
+.bg-center .first {
+  color: black;
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.bg-center .second {
+  font-size: 15px;
+  color: black;
+  margin-bottom: 40px;
+}
+.bg-center .third {
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding-top: 12px;
+  border-radius: 5px;
+  width: 234px;
+  height: 52px;
+  margin: 0 auto;
+}
+.bg-center .colorfff {
+  color: #fff;
+}
+
+.pagination {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 500;
+}
+
+.pagination a {
+  display: block;
+  color: rgba(161, 0, 53, 0.5);
+  position: relative;
+  padding: 20px;
+}
+
+.pagination a.active:after {
+  box-shadow: inset 0 0 0 5px;
+}
+
+.pagination a .hover-text {
+  color: rgba(161, 0, 53, 1);
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  padding-right: 15px;
+  white-space: nowrap;
+}
+
+.pagination a:hover .hover-text {
+  opacity: 1;
+}
+
+.pagination a:after {
+  content: "";
+  transition: box-shadow 0.5s ease;
+  width: 10px;
+  height: 10px;
+  display: block;
+  border: 1px solid;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+/* FOOTER */
+footer {
+  width: 100%;
+  height: 320px;
+  background-color: #000;
+}
+footer > .inner {
+  width: 1500px;
+  height: 301px;
+  display: flex;
+}
+footer > .inner #left_footer {
+  width: 1000px;
+  height: 301px;
+}
+footer > .inner #left_footer img {
+  width: 250px;
+  margin-top: 80px;
+}
+footer > .inner #left_footer div {
+  display: flex;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+footer > .inner #left_footer address {
+  font-size: 11px;
+  margin-left: 10px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+footer > .inner #left_footer #copyright {
+  font-size: 12px;
+  margin-left: 10px;
+  color: #fff;
+}
+footer > .inner #left_footer address span {
+  color: #fff;
+  margin-left: 7px;
+  padding-left: 7px;
+  border-left: 1.5px solid #fff;
+}
+footer > .inner #left_footer div a {
+  color: #fff;
+  width: 84px;
+  height: 35px;
+  border: 1px solid #fff;
+  margin-right: 10px;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 5px;
+  padding-top: 5px;
+
+  transition: all 0.5s linear;
+}
+footer > .inner #left_footer div a:hover {
+  background-color: #fff;
+  color: black;
+}
+footer > .inner #left_footer div .size12 {
+  color: #fff;
+  font-size: 12px;
+}
+footer > .inner #left_footer div .size12 strong {
+  color: #fff;
+  font-size: 12px;
+}
+
+footer > .inner #right_footer {
+  width: 500px;
+  height: 301px;
+  position: relative;
+}
+footer > .inner #right_footer i {
+  cursor: pointer;
+  color: #fff;
+  font-size: 24px;
+  text-align: right;
+  margin-top: 100px;
+  position: absolute;
+  right: 0;
+  margin-bottom: 40px;
+}
+footer > .inner #right_footer #center {
+  cursor: pointer;
+  text-align: right;
+  font-size: 11px;
+  color: #fff;
+  padding-top: 160px;
+}
+footer > .inner #right_footer #center span {
+  color: #fff;
+  margin-left: 7px;
+  padding-left: 7px;
+  border-left: 1.5px solid #fff;
+}
+
+footer > .inner #right_footer #last {
+  cursor: pointer;
+  font-size: 12px;
+  text-align: right;
+  color: #fff;
+  margin-top: 15px;
+}
+
+footer > .inner #right_footer #last span {
+  color: #fff;
+  margin-left: 10px;
+}

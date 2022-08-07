@@ -1,0 +1,923 @@
+function checkPath(origin, path) {
+   var
+     url = typeof(origin) === "string" ? origin : (origin+''),
+     path = typeof(path) === "string" ? path : (path+'');
+
+   return url.indexOf(path) === -1 ? false : true;
+}
+function getCategoryNameInPath() {
+  var path = window.BASE_PATH;
+
+  if ( checkPath(path, '/subscription') )
+    return '꽃 정기구독';
+  if ( checkPath(path, '/flowers') )
+    return '꽃다발';
+  if ( checkPath(path, '/quick') )
+    return '당일배송';
+  if ( checkPath(path, '/plants') )
+    return '플랜트';
+  if ( checkPath(path, '/class') )
+    return '플라워클래스';
+  if ( checkPath(path, '/item') )
+    return '소품샵';
+  if ( checkPath(path, '/up-sell') )
+    return '추가상품';
+  if ( checkPath(path, '/contents') )
+    return 'PRODUCTS';
+  if ( checkPath(path, '/checkout') )
+    return 'CHECKOUT';
+
+  return '꽃다발'
+}
+function getCategoryNameInContent(title) {
+
+  if ( checkPath(title, '홈') )
+    return '홈';
+  if ( checkPath(title, 'SUBSCRIPTION') )
+    return '꽃 정기구독';
+  if ( checkPath(title, '정기구독') )
+    return '꽃 정기구독';
+  if ( checkPath(title, '꽃 정기구독') )
+    return '꽃 정기구독';
+  if ( checkPath(title, '파머스') )
+    return '파머스마켓';
+  if ( checkPath(title, 'FARMERS') )
+    return '파머스마켓';
+  if ( checkPath(title, 'PLANTS') )
+    return '플랜트';
+  if ( checkPath(title, '플라워클래스') )
+    return '플라워클래스';
+  if ( checkPath(title, 'CLASS') )
+    return '플라워클래스';
+  if ( checkPath(title, '소품') )
+    return '소품샵';
+  if ( checkPath(title, '소품샵') )
+    return '소품샵';
+  if ( checkPath(title, 'ITEMS') )
+    return '소품샵';
+  if ( checkPath(title, '당일배송') )
+    return '당일배송';
+  if ( checkPath(title, 'TODAY') )
+    return '당일배송';
+
+  return '꽃다발';
+}
+function birthday_level(date) {
+  var
+    birthday = Number(date.split(' ')[0].substring(0, date.split(' ')[0].length-1)),
+    d = new Date(),
+    age = d.getFullYear() - birthday,
+    level = '';
+
+  switch ( Math.floor(age / 10) ) {
+    case 1 :
+      level = 'A';
+      break;
+    case 2 :
+      level = 'B';
+      break;
+    case 3 :
+      level = 'C';
+      break;
+    case 4 :
+      level = 'D';
+      break;
+    case 5 :
+      level = 'E';
+      break;
+    case 6 :
+      level = 'F';
+      break;
+    default :
+      level = 'Y';
+  }
+
+  return level;
+}
+
+
+
+
+
+
+function sendGaEventViewItem(data,data4) {
+  if (!window.BASE_IS_LIVE_MODE) {
+    console.log('전환데이터 [view_item]', [{
+      "id": data.id,
+      "name": data.name,
+      "list_name": data.list_name,
+      "brand": "kukka",
+      "category": getCategoryNameInContent(data.category),
+      "price": data.price,
+      "image_product": data.image_product
+    }], data4);
+    // return;
+  }
+
+  // <!-- Global site tag (gtag.js) - Google Analytics -->
+  if ( typeof(gtag)!=='undefined' ) {
+    gtag('event', 'view_item', {
+      "items": [
+        {
+          "id": data.id,
+          "name": data.name,
+          "list_name": data.list_name,
+          "brand": "kukka",
+          "category": getCategoryNameInContent(data.category),
+          "price": data.price
+        }
+      ]
+    });
+  }
+
+  // <!-- Global site tag (gtag.js) - Google Ads: 740730864 -->
+  if ( typeof(gtag)!=='undefined' )
+    gtag('event', 'conversion', {'send_to': 'AW-740730864/VF5HCMHqqqwBEPDPmuEC'});
+
+  // <!-- LOGGER(TM) TRACKING SCRIPT V.40 FOR logger.co.kr / 102750 : COMBINE TYPE / DO NOT ALTER THIS SCRIPT. -->
+  _TRK_PI  = "PDV";
+  _TRK_PN  = data.id;
+  _TRK_PND = data.name,
+  _TRK_MF  = "kukka";
+  _TRK_PN_URL = data.image_product;
+
+
+  // <!-- Facebook Pixel Code -->
+  if ( typeof(fbq)!=='undefined' )
+    fbq('track', 'ViewContent', {
+      content_ids: [data.id],
+      content_category: 'kukka_B2C',
+      content_type: 'product',
+      value: data.price_int,
+      currency: 'KRW'
+    });
+
+
+  // <!-- 카카오 픽셀 -->
+  if ( typeof(kakaoPixel)!=='undefined' )
+    kakaoPixel('6654610647381227860').viewContent({
+      id: data.id
+    });
+
+
+  // <!-- Enliple Common Tracker [공용] start -->
+  if ( typeof(EN)!=='undefined' ) {
+    var sh = new EN();
+    sh.setData("sc", "8ed3772a7fb5fa4ba9002e2487675ca3");
+    sh.setData("userid", "kukka2019");
+    sh.setData("pcode", data.id);
+    sh.setData("price", data.price_int);
+    sh.setData("pnm", encodeURIComponent(encodeURIComponent(data.name)));
+    sh.setData("img", encodeURIComponent(data.image_product));
+    sh.setData("dcPrice", data.price_int); // 옵션
+    // sh.setData("soldOut", data.product); //옵션 1:품절,2:품절아님
+    // sh.setData("mdPcode", "추천상품코드1,추천상품코드2,…"); //옵션
+    sh.setData("cate1", encodeURIComponent(encodeURIComponent(getCategoryNameInContent(data.category)))); //필수
+    sh.setSSL(true);
+    sh.sendRfShop();
+  }
+
+  // <!-- Bigin -->
+  if ( typeof(bigin)!=='undefined' )
+    bigin.event('bg:viewProduct', {
+      id: data.id,
+      name: data.name,
+      category: getCategoryNameInContent(data.category),
+      brand: 'kukka',
+      price: data.price_int,
+      thumbnail: data.image_product,
+    });
+}
+
+
+function sendGaEventViewItemList(data, data4, category) {
+  if (!window.BASE_IS_LIVE_MODE) {
+    console.log('전환데이터 [view_item_list]', category, (
+      category === '검색'
+      ? [data.results.map(function(item) {
+          return {
+            brand: "kukka",
+            category: getCategoryNameInContent(item.product.category.name),
+            id: item.product.id,
+            list_name: "검색",
+            name: item.product.name,
+            price: item.price_int
+          };
+        })]
+      : [data]
+    ));
+    // return;
+  }
+
+  if ( category !== '검색' ) {
+    // <!-- Global site tag (gtag.js) - Google Analytics -->
+    if ( typeof(gtag)!=='undefined' ) {
+      gtag('event', 'view_item_list', {
+        "items": data
+      });
+    }
+
+    // <!-- Bigin -->
+    if ( typeof(bigin)!=='undefined' )
+      data.map(function(item,index) {
+        bigin.event('bg:impression', {
+          id: item.id,
+          name: item.name,
+          category: [item.category], // 제품 카테고리, 하위 카테고리 배열 순서
+          brand: 'kukka',
+          list: category,
+          position: index + (
+            category === '홈'
+            ? item.category === '꽃 정기구독' ? 1 : 10
+            : item.category === '소품샵'
+            ? category === 'items_goods' ? 100 : category === 'items_vases' ? 50 : 1
+            : 1
+          ),
+          thumbnail: [item.thumbnail]
+        });
+      });
+  }
+  if ( category === '검색' ) {
+    // <!-- Global site tag (gtag.js) - Google Analytics -->
+    if ( typeof(gtag)!=='undefined' )
+      gtag('event', 'view_item_list', {
+        "items": data.results.map(function(item) {
+          return {
+            brand: "kukka",
+            category: getCategoryNameInContent(item.product.category.name),
+            id: item.product.id,
+            list_name: "검색",
+            name: item.product.name,
+            price: item.price_int
+          }
+        })
+      });
+
+    // <!-- 카카오 픽셀 -->
+    if ( typeof(kakaoPixel)!=='undefined' )
+      kakaoPixel('6654610647381227860').search({
+        keyword: data.keyword
+      });
+
+    // <!-- Facebook Pixel Code -->
+    if ( typeof(fbq)!=='undefined' )
+      fbq('track', 'Search',
+        {
+          search_string: data.keyword,
+          content_ids: data.results.map(function(item){
+            return item.product.id;
+          }),
+          content_type: 'product'
+        });
+  }
+
+  dataLayer.push({ ecommerce: null });
+  dataLayer.push({
+    event: "view_item_list",
+    ecommerce: {
+      items: data4
+    },
+  });
+}
+
+
+function sendGaEventSelectContent(data,data4) {
+  if ( !window.BASE_IS_LIVE_MODE ) {
+    console.log('전환데이터 [select_item]', {
+      "id": data.product.id,
+      "name": data.product.name,
+      "list_name": data.list_name,
+      "brand": "kukka",
+      "category": data.category,
+      "price": data.price_int
+    }, data4);
+    // return;
+  }
+
+  if ( typeof(gtag)!=='undefined' ) {
+    gtag('event', 'select_content', {
+      "content_type": 'product',
+      "items": [
+        {
+          "id": data.product.id,
+          "name": data.product.name,
+          "list_name": data.list_name,
+          "brand": "kukka",
+          "category": data.category,
+          "price": data.price_int
+        }
+      ]
+    });
+
+    dataLayer.push({ ecommerce: null });
+    dataLayer.push({
+      event: "select_item",
+      ecommerce: {
+        items: data4
+      },
+    });
+  }
+}
+
+
+function sendGaEventAddToCart(data,data4) {
+
+  if ( !window.BASE_IS_LIVE_MODE ) {
+    console.log('전환데이터 [add_to_cart]', data, data4);
+    // return;
+  }
+
+  // <!-- Global site tag (gtag.js) - Google Analytics -->
+  if ( typeof(gtag)!=='undefined' ) {
+    gtag('event', 'add_to_cart', {
+      "items": [
+        {
+          id: data.id,
+          name: data.name,
+          list_name: data.list_name,
+          brand: "kukka",
+          category: data.category,
+          quantity: data.quantity,
+          price: data.price
+        }
+      ]
+    });
+
+    dataLayer.push({ ecommerce: null });
+    dataLayer.push({
+      event: "add_to_cart",
+      ecommerce: {
+        items: data4
+      },
+    });
+  }
+
+
+  // <!-- Facebook Pixel Code -->
+  if ( typeof(fbq)!=='undefined' )
+    fbq('track', 'AddToCart', {
+      content_ids: data.id,
+      content_category: data.category,
+      content_type: 'product',
+      currency: 'KRW',
+      value: data.price
+    });
+
+  // <!-- 카카오 픽셀 -->
+  if ( typeof(kakaoPixel)!=='undefined' )
+    kakaoPixel('6654610647381227860').viewCart();
+
+  // <!-- LOGGER(TM) TRACKING SCRIPT V.40 FOR logger.co.kr / 102750 : COMBINE TYPE / DO NOT ALTER THIS SCRIPT. -->
+  if ( typeof(eval)!=='undefined' )
+    eval('try{ _trk_clickTrace( \'SCI\', _TRK_PN ); }catch(_e){ }');
+
+  // <!-- Bigin -->
+  if ( typeof(bigin)!=='undefined' )
+    bigin.event('bg:cart', {
+      products: [
+        {
+          id: data.id,
+          name: data.name,
+          quantity: data.quantity,
+          variant: '',
+          price: data.price,
+        }
+      ]
+    });
+}
+
+
+function sendGaEventCartItemList(data, data4) {
+  if ( !window.BASE_IS_LIVE_MODE ) {
+    console.log('전환데이터 [view_cart"]', data.map(function(item){
+          return {
+            id: item.id,
+            name: item.product_name,
+            quantity: item.quantity,
+            variant: '',
+            price: item.total_price,
+            list_name: '쇼핑백',
+            category: item.category,
+          };
+        }));
+    // return;
+  }
+
+  // <!-- Global site tag (gtag.js) - Google Analytics -->
+  if ( typeof(gtag)!=='undefined' ) {
+    dataLayer.push({ ecommerce: null });
+    dataLayer.push({
+      event: "view_cart",
+      ecommerce: {
+        items: data4
+      },
+    });
+  }
+
+
+  // <!-- Bigin -->
+  if ( typeof(bigin)!=='undefined' )
+    bigin.event('bg:cart', {
+      products: data.map(function(item){
+        return {
+          id: item.id,
+          name: item.product_name,
+          quantity: item.quantity,
+          variant: '',
+          price: item.total_price,
+          list_name: '쇼핑백',
+          category: item.category,
+        };
+      })
+    });
+}
+
+
+function sendGaEventRemoveFromCart(data, data4) {
+  if ( !window.BASE_IS_LIVE_MODE ) {
+    console.log('전환데이터 [remove_from_cart]', {
+      event: "remove_from_cart",
+      ecommerce: {
+        items: data4
+      },
+    });
+    // return;
+  }
+
+  if ( !data )
+    return;
+
+  // <!-- Global site tag (gtag.js) - Google Analytics -->
+  if ( typeof(gtag)!=='undefined' ) {
+    gtag('event', 'remove_from_cart', {
+      "items": data.map(function (item) {
+        return {
+          id: item.id,
+          name: item.name,
+          list_name: item.list_name,
+          brand: "kukka",
+          category: item.category,
+          quantity: item.quantity,
+          price: item.price
+        };
+      })
+    });
+
+    dataLayer.push({ ecommerce: null });
+    dataLayer.push({
+      event: "remove_from_cart",
+      ecommerce: {
+        items: data4
+      },
+    });
+  }
+
+  // <!-- Bigin -->
+  if ( typeof(bigin)!=='undefined' )
+    bigin.event('bg:cart', {
+      products: [
+        data.map(function(item){
+          return {
+            id: item.id,
+            name: item.name,
+            quantity: item.quantity,
+            variant: '',
+            price: item.price,
+          };
+        })
+      ]
+    });
+}
+
+
+function sendGaEventBeginCheckout(data, data4, price, coupon, level, payment_type) {
+  if ( !window.BASE_IS_LIVE_MODE ) {
+    console.log('전환데이터 [begin_checkout]', {
+      event: "begin_checkout",
+      ecommerce: {
+        currency: "KRW",
+        value: price,
+        coupon: coupon,
+        level: level,
+        payment_type: payment_type,
+        items: data4
+      },
+    });
+    // return;
+  }
+
+  // <!-- Global site tag (gtag.js) - Google Analytics -->
+  if ( typeof(gtag)!=='undefined' ) {
+    gtag('event', 'begin_checkout', {
+      checkout_step: 1,
+      items: data.items.map(function (item) {
+        return {
+          id: item.id,
+          name: item.product_name,
+          list_name: '결제',
+          brand: 'kukka',
+          category: getCategoryNameInContent(item.category),
+          quantity: item.quantity,
+          price: item.box_option_price
+        };
+      }),
+      coupon: ""
+    });
+
+    dataLayer.push({ ecommerce: null });
+    dataLayer.push({
+      event: "begin_checkout",
+      ecommerce: {
+        currency: "KRW",
+        value: price,
+        coupon: coupon,
+        level: level,
+        payment_type: payment_type,
+        items: data4
+      },
+    });
+  }
+
+  // <!-- Facebook Pixel Code -->
+  if ( typeof(fbq)!=='undefined' )
+    fbq('track', 'InitiateCheckout', {
+      currency: "KRW",
+      value: 0,
+      content_ids: data.no,
+      content_type: 'product',
+    });
+
+  // <!-- Bigin -->
+  if ( typeof(bigin)!=='undefined' )
+    bigin.event('bg:cart', {
+      step: 0,
+      products: [
+        data.items.map(function(item){
+          return {
+            id: item.id,
+            name: item.product_name,
+            quantity: item.quantity,
+            variant: '',
+            price: item.box_option_price,
+          };
+        })
+      ]
+    });
+}
+
+
+function sendGaEventPurchase(data,data4) {
+  if (!window.BASE_IS_LIVE_MODE) {
+    console.log('전환데이터 [ Purchase ]', data, {
+      event: "purchase",
+      ecommerce: {
+        transaction_id: data4.transaction_id,
+        affiliation: "KUKKA",
+        value: Number(data4.value),
+        shipping: Number(data4.shipping),
+        currency: "KRW",
+        coupon: data4.coupon,
+        level: data4.level,
+        payment_type: data4.payment,
+        delivery_type: data4.delivery_type,
+        items: data4.items,
+      },
+    });
+    // return;
+  }
+
+  // <!-- Global site tag (gtag.js) - Google Analytics -->
+  if ( typeof(gtag)!=='undefined' ) {
+    gtag('event', 'purchase', {
+      transaction_id: data.no,
+      affiliation: "kukka",
+      value: Number(data.total_checkout),
+      currency: "KRW",
+      items: data.items
+    });
+
+    dataLayer.push({ ecommerce: null });
+    dataLayer.push({
+      event: "purchase",
+      ecommerce: {
+        transaction_id: data4.transaction_id,
+        affiliation: "KUKKA",
+        value: Number(data4.value),
+        shipping: Number(data4.shipping),
+        currency: "KRW",
+        coupon: data4.coupon,
+        level: data4.level,
+        payment_type: data4.payment,
+        delivery_type: data4.delivery_type,
+        items: data4.items,
+      },
+    });
+  }
+
+  // <!-- Global site tag (gtag.js) - Google Ads: 740730864 -->
+  if ( typeof(gtag)!=='undefined' )
+    gtag('event', 'conversion', {
+      'send_to': 'AW-740730864/L3-BCKrqnqwBEPDPmuEC',
+      'value': Number(data.total_checkout),
+      'currency': 'KRW',
+      'transaction_id': data.no
+    });
+
+  // <!-- Bigin -->
+  if ( typeof(bigin)!=='undefined' && data.bigin )
+    bigin.event('bg:purchase', {
+      id: data.no,
+      revenue: data.total_checkout,
+      products: data.bigin
+    });
+
+  // <!-- Facebook Pixel Code -->
+  if ( typeof(fbq)!=='undefined' && data.contents )
+    fbq('track', 'Purchase', {
+      currency: 'KRW',
+      value: Number(data.total_checkout),
+      id: data.no,
+      content_type: 'product',
+      contents: data.contents
+    }, {
+      eventID: 'order.no.' + data.no
+    });
+
+  // <!-- LOGGER(TM) SCRIPT FOR SETTING ENVIRONMENT V.27 :  / FILL THE VALUE TO SET. -->
+  if ( data.tpk ) {
+    _TRK_PI = "ODR";
+    _TRK_OA = data.tpk.oa;
+    _TRK_OE = data.tpk.oe;
+    _TRK_OP = data.tpk.op;
+  }
+
+  // <!-- 카카오 픽셀 -->
+  if ( typeof(kakaoPixel)!=='undefined' && data.products )
+    kakaoPixel('6654610647381227860').purchase({
+      total_quantity: data.quantity,
+      total_price: data.total_checkout,
+      currency: "KRW",
+      products: data.products
+    });
+
+
+  // <!-- Enliple Common Tracker [공용] start -->
+  if ( typeof(EN)!=='undefined' && data.cn ) {
+    var cn = new EN();
+    cn.setData("uid", "kukka2019");
+    cn.setData("ordcode", data.no);
+    cn.setData("pcode", data.cn.pcode);
+    cn.setData("qty", data.quantity);
+    cn.setData("price", data.total_checkout);
+    cn.setData("pnm", data.cn.pnm); //옵션
+    cn.setSSL(true);
+    cn.sendConv();
+  }
+}
+
+
+function sendGaEventPaymentInfo(data4, price, coupon, type, level) {
+  if (!window.BASE_IS_LIVE_MODE) {
+    console.log('전환데이터 [add_payment_info]', {
+      event: "add_payment_info",
+      ecommerce: {
+        currency: "KRW",
+        value: price,
+        coupon: coupon,
+        level: level,
+        payment_type: type,
+        items: data4,
+      },
+    });
+    // return;
+  }
+
+  // <!-- Global site tag (gtag.js) - Google Analytics -->
+  if ( typeof(gtag)!=='undefined' ) {
+    dataLayer.push({ ecommerce: null });
+    dataLayer.push({
+      event: "add_payment_info",
+      ecommerce: {
+        currency: "KRW",
+        value: price,
+        coupon: coupon,
+        level: level,
+        payment_type: type,
+        items: data4,
+      },
+    });
+  }
+}
+
+
+function sendGaEventShippingInfo(data4, price, coupon, level, payment) {
+  if (!window.BASE_IS_LIVE_MODE) {
+    console.log('전환데이터 [Shipping Info]', {
+      event: "add_shipping_info",
+      ecommerce: {
+        currency: "KRW",
+        value: price,
+        coupon: coupon,
+        level: level,
+        payment_type: payment,
+        items: data4,
+      },
+    });
+    // return;
+  }
+
+  // <!-- Global site tag (gtag.js) - Google Analytics -->
+  if ( typeof(gtag)!=='undefined' ) {
+    dataLayer.push({ ecommerce: null });
+    dataLayer.push({
+      event: "add_shipping_info",
+      ecommerce: {
+        currency: "KRW",
+        value: price,
+        coupon: coupon,
+        level: level,
+        payment_type: payment,
+        items: data4,
+      },
+    });
+  }
+}
+
+
+function sendGaEventGiftInfo(data4, price, coupon) {
+  if (!window.BASE_IS_LIVE_MODE) {
+    console.log('전환데이터 [gift_shipping_info]', {
+      event: "gift_shipping_info",
+      ecommerce: {
+        currency: "KRW",
+        value: price,
+        coupon: coupon,
+        items: data4,
+      },
+    });
+    // return;
+  }
+
+  // <!-- Global site tag (gtag.js) - Google Analytics -->
+  if ( typeof(gtag)!=='undefined' ) {
+    dataLayer.push({ ecommerce: null });
+    dataLayer.push({
+      event: "gift_shipping_info",
+      ecommerce: {
+        currency: "KRW",
+        value: price,
+        coupon: coupon,
+        items: data4,
+      },
+    });
+  }
+}
+
+
+function sendGaEventDeliveryInfo(data4, type, coupon, price) {
+  if (!window.BASE_IS_LIVE_MODE) {
+    console.log('전환데이터 [delivery_info]', {
+      event: "delivery_info",
+      ecommerce: {
+        currency: "KRW",
+        value: price,
+        coupon: coupon,
+        delivery_type : type,
+        items: data4,
+      },
+    });
+    // return;
+  }
+
+  // <!-- Global site tag (gtag.js) - Google Analytics -->
+  if ( typeof(gtag)!=='undefined' ) {
+    dataLayer.push({ ecommerce: null });
+    dataLayer.push({
+      event: "delivery_info",
+      ecommerce: {
+        currency: "KRW",
+        value: price,
+        coupon: coupon,
+        delivery_type : type,
+        items: data4,
+      },
+    });
+  }
+}
+
+
+function sendGaEventLogin() {
+  if ( !window.BASE_IS_LIVE_MODE ) {
+    console.log('전환데이터 [Login]');
+    // return;
+  }
+
+  // <!-- Global site tag (gtag.js) - Google Analytics -->
+  if ( typeof(gtag)!=='undefined' ) {
+    dataLayer.push({ ecommerce: null });
+    dataLayer.push({
+      event: "login",
+    });
+  }
+}
+
+
+function sendGaEventJoinComplete(data) {
+  if ( !window.BASE_IS_LIVE_MODE ) {
+    console.log('전환데이터 [Join Complete]', data);
+    // return;
+  }
+
+  if ( data.birthday === '1900-01-01' ) {
+    // <!-- Global site tag (gtag.js) - Google Ads: 740730864 -->
+    if ( typeof(gtag)!=='undefined' )
+      gtag('event', 'conversion', {'send_to': 'AW-740730864/XbBMCOrpqqwBEPDPmuEC'});
+
+    // <!-- 카카오 픽셀 -->
+    if ( typeof(kakaoPixel)!=='undefined' )
+      kakaoPixel('6654610647381227860').completeRegistration();
+
+    // <!-- Facebook Pixel Code -->
+    if ( typeof(fbq)!=='undefined' ) {
+      fbq('track', 'CompleteRegistration',{
+        value: 0,
+        currency: 'KRW',
+        content_type: 'member'
+      });
+    }
+  }else{
+    // <!-- LOGGER(TM) SCRIPT FOR SETTING ENVIRONMENT V.27 :  / FILL THE VALUE TO SET. -->
+    _TRK_PI = "RGR";
+    _TRK_SX = data.gender === '2' ? 'M' : 'F';
+    _TRK_AG = birthday_level(data.birthday);
+  }
+}
+
+
+function sendGaEventRefund(el, order, price) {
+  if ( !window.BASE_IS_LIVE_MODE ) {
+    console.log('전환데이터 [Refund]', el, order, price);
+    // return;
+  }
+
+  var data = el;
+  var items = [];
+  for( var i = 0; i < data.length; i++ ) {
+    var obj = {};
+    obj["id"] = $(data[i]).find('.product_pk').text();
+    obj["name"] = $(data[i]).find('.product_name').text();
+    obj["list_name"] = getCategoryNameInContent($(data[i]).find('.product_category').text());
+    obj["brand"] = "kukka";
+    obj["category"] = getCategoryNameInContent($(data[i]).find('.product_category').text());
+    obj["variant"] = "";
+    obj["list_position"] = 1;
+    obj["quantity"] = $(data[i]).find('.product_quantity').text();
+    obj["price"] = Number($(data[i]).find('.product_price').text());
+    items.push(obj);
+  }
+
+  // <!-- Global site tag (gtag.js) - Google Analytics -->
+  if ( typeof(gtag)!=='undefined' )
+    gtag('event', 'refund', {
+      "transaction_id": order,
+      "affiliation": "kukka",
+      "value": price,
+      "currency": "KRW",
+      "tax": 0,
+      "shipping": 0,
+      "items": items
+    });
+
+  // <!-- Bigin -->
+  if ( typeof(bigin)!=='undefined' )
+    bigin.event('bg:refund', {
+      id: order,
+    });
+}
+
+
+
+function sendGaEventRefund2(order, price, items) {
+  if ( !window.BASE_IS_LIVE_MODE ) {
+    console.log('전환데이터 [Refund]', order, price, items);
+    // return;
+  }
+
+  // <!-- Global site tag (gtag.js) - Google Analytics -->
+  if ( typeof(gtag)!=='undefined' )
+    gtag('event', 'refund', {
+      "transaction_id": order,
+      "affiliation": "kukka",
+      "value": price,
+      "currency": "KRW",
+      "tax": 0,
+      "shipping": 0,
+      "items": items
+    });
+
+  // <!-- Bigin -->
+  if ( typeof(bigin)!=='undefined' )
+    bigin.event('bg:refund', {
+      id: order,
+    });
+}

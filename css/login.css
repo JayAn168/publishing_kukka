@@ -1,0 +1,181 @@
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Noto+Sans+KR:wght@100;300;400;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+.ftM {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+}
+
+.ftM_900 {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  padding: 0 10px;
+}
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 300;
+}
+
+/* 가운데정렬 */
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainImg {
+  padding-top: 120px;
+  width: 100%;
+  min-width: 900px;
+}
+
+/* content */
+header {
+  background-color: transparent;
+}
+
+#login {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.left {
+  width: 50%;
+  height: 100vh;
+  background: url(../img/about/login_left_img.png);
+}
+
+.right {
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.right_box {
+  width: 450px;
+  height: 600px;
+}
+
+.right_box > p {
+  margin: 10px;
+}
+
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.id {
+  width: 350px;
+  height: 40px;
+  border: none;
+  border-bottom: 1px solid rgb(145, 144, 144);
+  margin: 15px;
+  padding: 10px;
+  color: rgb(145, 144, 144);
+}
+
+.pw {
+  width: 350px;
+  height: 40px;
+  border: none;
+  border-bottom: 1px solid rgb(145, 144, 144);
+  margin: 0px 15px;
+  padding: 10px;
+  color: rgb(145, 144, 144);
+}
+
+.check_box {
+  display: flex;
+  margin-left: 25px;
+  margin-top: 20px;
+}
+
+.check_img > i {
+  color: rgb(198, 196, 196);
+}
+
+.check_box > h6 {
+  display: block;
+  margin-top: 2px;
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.check_box .id_box {
+  display: block;
+  margin-top: 2px;
+  margin-left: 90px;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.check_box .pw_box {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.login_btn {
+  background-color: black;
+  width: 350px;
+  height: 40px;
+  color: #fff;
+  margin: 20px;
+}
+
+.first_txt {
+  font-size: 13px;
+  padding: 20px 110px;
+}
+
+.sns_box {
+  width: 350px;
+  height: 100px;
+  margin-left: 40px;
+}
+
+.sns {
+  display: flex;
+  justify-content: center;
+}
+
+.sns > li > a > img {
+  width: 50%;
+  padding: 0px;
+}
+
+.email_btn {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(186, 186, 186);
+  width: 350px;
+  height: 40px;
+  color: #333;
+  margin: 0 20px;
+}
+
+.second_txt {
+  font-size: 13px;
+  padding: 25px 50px;
+}
+
+.third_txt {
+  font-size: 13px;
+  padding: 0px 150px;
+  text-decoration: underline;

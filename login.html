@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KUKKA | NO REASON FOR FLOWERS</title>
+    <!-- 폰트 : Noto Sans Korean, Bree Serif
+        헤더 : 120 푸터 : 320
+        색조합 
+            rgb(244, 191, 191)분홍, 
+            rgb(255, 217, 192)주황, 
+            rgb(250, 240, 215)노랑, 
+            rgb(140, 192, 222)파랑 -->
+    <link rel="icon" href="./kukka.ico/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Noto+Sans+KR:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/main3.css" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <script
+      src="https://kit.fontawesome.com/bd7db36e77.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="./js/main.js"></script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="inner">
+        <a href="./index.html" class="logo">
+          <img src="./image/kukka_로고.png" alt="KUKKA" />
+        </a>
+
+        <div class="sub-menu">
+          <ul class="menu">
+            <li>
+              <a href="./login.html">회원가입</a>
+            </li>
+            <li>
+              <a href="./login.html">장바구니</a>
+            </li>
+          </ul>
+          <div class="search">
+            <input type="text" />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+        </div>
+
+        <ul class="main-menu">
+          <li class="item">
+            <a href="javascript:void(0)" class="item__name">정기구독</a>
+            <div class="item__contents"></div>
+          </li>
+          <li class="item">
+            <a href="javascript:void(0)" class="item__name">파머스마켓</a>
+            <div class="item__contents">
+              <div class="contents__menu"></div>
+            </div>
+          </li>
+          <li class="item">
+            <a href="./market_order.html" class="item__name">꽃 선물</a>
+            <div class="item__contents">
+              <div class="contents__menu"></div>
+            </div>
+          </li>
+          <li class="item">
+            <a href="javascript:void(0)" class="item__name">당일배송</a>
+            <div class="item__contents">
+              <div class="contents__menu"></div>
+            </div>
+          </li>
+          <li class="item">
+            <a href="./class.html" class="item__name">플라워클래스</a>
+            <div class="item__contents">
+              <div class="contents__menu"></div>
+            </div>
+          </li>
+          <li class="item">
+            <a href="./about.html" class="item__name">브랜드소개</a>
+            <div class="item__contents">
+              <div class="contents__menu"></div>
+            </div>
+          </li>
+          <li class="item">
+            <a href="javascript:void(0)" class="item__name">콘텐츠</a>
+            <div class="item__contents">
+              <div class="contents__menu"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- content -->
+    <section id="login">
+      <div class="left"></div>
+      <div class="right">
+        <div class="right_box">
+          <p class="ftM_900">로그인</p>
+          <input
+            type="text"
+            placeholder="아이디 (이메일 주소)"
+            class="id outline-none"
+          />
+          <input type="text" placeholder="비밀번호" class="pw outline-none" />
+          <div class="check_box">
+            <a href="#" class="check_img">
+              <i class="fa-regular fa-circle-check"></i>
+            </a>
+            <h6>자동로그인</h6>
+            <a href="#" class="id_box">아이디 찾기 ㅣ</a>
+            <a href="#" class="pw_box">비밀번호 찾기</a>
+          </div>
+          <button class="login_btn">로그인</button>
+          <p class="first_txt">SNS 계정 로그인 / 회원가입</p>
+          <div class="sns_box">
+            <ul class="sns">
+              <li>
+                <a href="#"><img src="./img/login/네이버.JPG" /></a>
+              </li>
+              <li>
+                <a href="#"><img src="./img/login/애플.JPG" /></a>
+              </li>
+              <li>
+                <a href="#"><img src="./img/login/카카오.JPG" /></a>
+              </li>
+              <li>
+                <a href="#"><img src="./img/login/페이스북.JPG" /></a>
+              </li>
+            </ul>
+          </div>
+          <button class="email_btn">이메일로 신규 회원가입</button>
+          <p class="second_txt">
+            회원가입 하시면 최대 2,000 포인트 지급해드려요!
+          </p>
+          <a href="#" class="third_txt">비회원 주문 조회</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="inner">
+        <div id="left_footer">
+          <img src="./img/hf/footer_logo.png" alt="푸터로고" />
+          <div>
+            <a href="javascript:void(0)"> 고객센터 > </a>
+            <span class="size12"
+              ><strong> 고객센터 1661 - 1031 </strong> <br />AM 10:00 - PM 18:00
+              점심시간 13:00 - 14:00 (주말 & 공휴일 휴무)</span
+            >
+          </div>
+          <address>
+            꾸까(KUKKA)
+            <span>대표자 박춘화</span>
+            <span>사업자 등록번호 264-81-32594</span>
+            <span>사업자정보 확인</span>
+            <span>서울특별시 서초구 명달로 9 방배빌딩 지하 1층 KUKKA</span>
+            <span>기업공시</span>
+            <span>통신판매신고번호 2018-서울서초-1692</span>
+          </address>
+          <div id="copyright">&copy; KUKKA, Inc All rights reserved</div>
+        </div>
+        <div id="right_footer">
+          <i class="fa-brands fa-instagram"></i>
+          <div id="center">
+            공지사항
+            <span>배송정책</span>
+            <span>회원 멤버십</span>
+          </div>
+          <div id="last">이용약관 <span>개인정보 처리 방침</span></div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+
+      (function () {
+        var a="//script.beusable.net/ba.v1.0.0.min.js";
+        __baclient__.load(a);__baclient__.sid="32da24b902";__baclient__.rootDomain="null";__baclient__.samplingRate=100;
+      })()
+    
